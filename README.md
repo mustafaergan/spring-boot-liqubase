@@ -1,0 +1,1 @@
+Liquibase ilgili dökümanı eklenmiştir. (liquibase.pdf)

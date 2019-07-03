@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+
+    <changeSet author="mustafaergan" id="mustafaergan-2019-29-06-15:14">
+        <createTable tableName="Person">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="address" type="VARCHAR(255)"/>
+        </createTable>
+        <rollback>
+            <dropTable tableName="person"/>
+        </rollback>
+    </changeSet>
+
+
+    <changeSet author="mustafaergan" id="mustafaergan-2019-29-06-15:15">
+        <insert tableName="Person">
+            <column name="id" valueNumeric="1"/>
+            <column name="name" value="Mustafa"/>
+            <column name="address" value="İstanbul"/>
+        </insert>
+    </changeSet>
+
+
+    <changeSet author="mustafaergan" id="mustafaergan-2019-29-06-15:16">
+        <insert tableName="Person">
+            <column name="id" value="2"/>
+            <column name="name" value="Ahmet"/>
+            <column name="address" value="Ankara"/>
+        </insert>
+    </changeSet>
+
+
+    <changeSet author="mustafaergan" id="mustafaergan-2019-29-06-15:17">
+        <delete
+                tableName="Person">
+            <where>name = 'Mustafa'</where>
+        </delete>
+    </changeSet>
+
+
+    <changeSet author="mustafaergan" id="mustafaergan-2019-29-06-15:18">
+        <sql>
+            DELETE FROM Person WHERE Name = 'Ahmet'
+        </sql>
+    </changeSet>
+
+    <changeSet author="mustafaergan" id="mustafaergan-2019-29-06-15:19">
+        <createTable tableName="Customer">
+            <column name="id" type="VARCHAR(255)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="address" type="VARCHAR(255)"/>
+        </createTable>
+        <rollback>
+            <dropTable tableName="Customer"/>
+        </rollback>
+    </changeSet>
+
+
+
+    <changeSet author="mustafaergan" id="mustafaergan-2019-29-06-15:20">
+        <customChange class="com.mustafaergan.liqubase.CustomInsert">
+            <param name="name" value="Mustafa"/>
+            <param name="city" value="İstanbul"/>
+        </customChange>
+    </changeSet>
+
+
+</databaseChangeLog>
